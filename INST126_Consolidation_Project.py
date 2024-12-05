@@ -5,10 +5,11 @@ print("Roll the dice")
 
 # Roll the dice
 roll = random.choices([1,2,3,4,5,6], k=3)
+roll[1]
 print(roll)
 
 # Set the points variable
-points = 0
+points = 1
 
 # Set the answer variable to run the first time
 answer = "Yes"
@@ -42,15 +43,20 @@ while answer == "Yes":
         if answer == "Yes":
             new_value = random.sample([1,2,3,4,5,6], k=1)
             roll[index] = new_value[0]
-        if answer == "No":
+        elif answer == "No":
             print(f"Game over. Your total dice score is: {roll} and your point value is: {points}")
             break
+        else:
+            raise TypeError("Incorrect input.")
     if roll[0] != roll[1] != roll[2]:
         points = roll[0] + roll[1] + roll[2]
         print(f"All numbers of the dice are different. Your current dice score is: {roll} and your point value is: {points}")
         answer = input("Would you like to re-roll all of the dice?")
         if answer == "Yes":
-            roll = random.choices([1,2,3,4,5,6], k=3)
+            try:
+                roll = random.choices([1,2,3,4,5,6], k=3)
+            except:
+                print("There was an error with your roll")
         if answer == "No":
             print(f"Game over. Your total dice score is: {roll} and your point value is: {points}")
             break
